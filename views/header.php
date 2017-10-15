@@ -29,7 +29,7 @@
                 <a class="nav-link" href="contatti.php">Contatti</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" >
+        <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="email">
             <input class="form-control mr-sm-2" type="password" id="pass" name="password" placeholder="password">
             <button class="btn btn-outline-success my-2 my-sm-0" id="btnn" type="button">Login/registrati</button>
