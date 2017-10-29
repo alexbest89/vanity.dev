@@ -23,6 +23,9 @@
             <div class="modal-body">
                 <div class="container">
                     <form>
+                        <div id="errore">
+                            <div class="alert alert-danger" role="alert">aaaaa</div>
+                        </div>
                         <input type="hidden" id="loginActive" name="loginActive" value="1">
                         <div class="form-group row">
                             <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Email</label>

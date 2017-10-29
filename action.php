@@ -21,10 +21,10 @@
 
         }
 
-        if ($error != "") {
+        /*if ($error != "") {
             echo $error;
             exit();
-        }
+        }*/
 
         if ($_POST['loginActive'] == 0){
 
@@ -49,10 +49,10 @@
 
         }
 
-        if ($error != "") {
+        /*if ($error != "") {
             echo $error;
             exit();
-        }
+        }*/
 
     };
 
