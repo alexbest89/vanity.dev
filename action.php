@@ -2,80 +2,84 @@
 
     include("functions.php");
 
-    if ($_GET['action'] == "loginSignup") {
+    if (!$_SESSION['id']) {
 
-        $error="";
-        $ok="";
 
-        if (!$_POST['email']){
+        if ($_GET['action'] == "loginSignup") {
 
-            $error="Il campo email è richiesto";
+            $error = "";
+            $ok = "";
 
-        } else if (!$_POST['password']){
+            if (!$_POST['email']) {
 
-            $error="il campo password è richiesto";
+                $error = "Il campo email è richiesto";
 
-        } else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+            } else if (!$_POST['password']) {
 
-            $error = "Inserisci un indirizzo email valido!";
+                $error = "il campo password è richiesto";
 
-        }
+            } else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
 
-        if ($error != "") {
-            echo $error;
-            exit();
-        }
+                $error = "Inserisci un indirizzo email valido!";
 
-        if ($_POST['loginActive'] == 0){
+            }
 
-            echo $_POST['email'];
-            echo $_POST['password'];
+            if ($error != "") {
+                echo $error;
+                exit();
+            }
 
-            $query="select * from utente where email='".mysqli_real_escape_string($link,$_POST['email'])."'";
-            $result = mysqli_query($link,$query);
-            if (mysqli_num_rows($result) > 0){
-                $error = "l'email è già stata usata";
-            } else {
-                $query = "insert into utente(email,password) values ('".mysqli_real_escape_string($link,$_POST['email'])."','".mysqli_real_escape_string($link,$_POST['password'])."')";
-                if (mysqli_real_query($link,$query)){
+            if ($_POST['loginActive'] == 0) {
 
-                    $query1 = "UPDATE utente SET password ='".md5(md5(mysqli_insert_id($link)).$_POST['password'])."' WHERE id = ".mysqli_insert_id($link)."";
-                    mysqli_real_query($link,$query1);
+                $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email']) . "'";
+                $result = mysqli_query($link, $query);
+                if (mysqli_num_rows($result) > 0) {
+                    $error = "l'email è già stata usata";
+                } else {
+                    $query = "insert into utente(email,password) values ('" . mysqli_real_escape_string($link, $_POST['email']) . "','" . mysqli_real_escape_string($link, $_POST['password']) . "')";
+                    if (mysqli_real_query($link, $query)) {
 
-                    $error="Utente registrato!";
+                        $query1 = "UPDATE utente SET password ='" . md5(md5(mysqli_insert_id($link)) . $_POST['password']) . "' WHERE id = " . mysqli_insert_id($link) . "";
+                        mysqli_real_query($link, $query1);
 
-                } else{
+                        $error = "Utente registrato!";
 
-                    $error = "L'utente non è stato registrato.";
+                    } else {
+
+                        $error = "L'utente non è stato registrato.";
+                    }
                 }
-            }
-
-        } else {
-
-            echo $_POST['email'];
-
-            $query="select * from utente where email='".mysqli_real_escape_string($link,$_POST['email'])."'";
-            $result = mysqli_query($link,$query);
-            $row = mysqli_fetch_assoc($result);
-            echo mysqli_insert_id($link);  //il problema è che legge sempre 0 l'id... per questo mi da errore nel login
-            if ($row['password'] == md5(md5(mysqli_insert_id($link)).$_POST['password'])){
-
-                $error = "Login Effettuato!";
-                $_SESSION['id'] = $row['id'];
 
             } else {
-                echo md5(md5(mysqli_insert_id($link)).$_POST['password']);
-                $error = "Email e password sono errati";
+
+                $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email']) . "'";
+                $result = mysqli_query($link, $query);
+                $row = mysqli_fetch_assoc($result);
+
+                if ($row['password'] == md5(md5($row['id']) . $_POST['password'])) {
+
+                    $error = "Login Effettuato!";
+                    $_SESSION['id'] = $row['id'];
+                    header("Location:contatti.php");
+
+                } else {
+                    $error = "Email e password sono errati";
+                }
+
             }
 
-        }
+            if ($error != "") {
+                echo $error;
+                echo $ok;
+                exit();
+            }
 
-        if ($error != "") {
-            echo $error;
-            echo $ok;
-            exit();
-        }
+        };
 
-    };
+    }else{
+
+        echo $_SESSION['id'];
+
+    }
 
 ?>
