@@ -21,12 +21,15 @@
 
         }
 
-        /*if ($error != "") {
+        if ($error != "") {
             echo $error;
             exit();
-        }*/
+        }
 
         if ($_POST['loginActive'] == 0){
+
+            echo $_POST['email'];
+            echo $_POST['password'];
 
             $query="select * from utente where email='".mysqli_real_escape_string($link,$_POST['email'])."'";
             $result = mysqli_query($link,$query);
@@ -39,7 +42,7 @@
                     $query1 = "UPDATE utente SET password ='".md5(md5(mysqli_insert_id($link)).$_POST['password'])."' WHERE id = ".mysqli_insert_id($link)."";
                     mysqli_real_query($link,$query1);
 
-                    $ok="Utente registrato!";
+                    $error="Utente registrato!";
 
                 } else{
 
@@ -47,12 +50,31 @@
                 }
             }
 
+        } else {
+
+            echo $_POST['email'];
+
+            $query="select * from utente where email='".mysqli_real_escape_string($link,$_POST['email'])."'";
+            $result = mysqli_query($link,$query);
+            $row = mysqli_fetch_assoc($result);
+            echo mysqli_insert_id($link);  //il problema è che legge sempre 0 l'id... per questo mi da errore nel login
+            if ($row['password'] == md5(md5(mysqli_insert_id($link)).$_POST['password'])){
+
+                $error = "Login Effettuato!";
+                $_SESSION['id'] = $row['id'];
+
+            } else {
+                echo md5(md5(mysqli_insert_id($link)).$_POST['password']);
+                $error = "Email e password sono errati";
+            }
+
         }
 
-        /*if ($error != "") {
+        if ($error != "") {
             echo $error;
+            echo $ok;
             exit();
-        }*/
+        }
 
     };
 

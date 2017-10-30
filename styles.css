@@ -20,7 +20,6 @@ body {
 #toggleLogin{
     text-decoration: underline;
 }
-#errore {
-    color:blue;
+#prova{
     display: none;
 }
