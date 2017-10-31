@@ -1,6 +1,11 @@
 <?php
 
-    include("functions.php");
+    include "functions.php";
+
+    if ($_GET['logout'] == 1){
+        $_SESSION['id'] = "";
+        header("Location:index.php");
+    }
 
     if (!$_SESSION['id']) {
 
