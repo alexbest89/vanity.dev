@@ -29,17 +29,17 @@
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
-                <form>
                     <?php if (!$_SESSION['id']) {
                         $tasto = '<button class="btn btn-outline-success my-2 my-sm-0" data-toggle = "modal" data-target = "#myModal" > Login / Registrati</button>';
                         echo $tasto;
 
                     } else {
+                        echo "<form>";
                         $tasto = '<button type="submit" formaction = "action.php" name="logout" class="btn btn-outline-success my-2 my-sm-0" value="1">Logout</button >';
                         echo $tasto;
+                        echo "</form>";
                     }
                     ?>
-                </form>
             </div>
         </div>
     </nav>
