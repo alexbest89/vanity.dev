@@ -5,9 +5,10 @@
  * Date: 15/10/17
  * Time: 20:12
  */
-include "functions.php";
+    include("functions.php");
 
-if ($_SESSION['id']) {
+    include("views/header.php");
 
-    echo "<H1>Ciao</H1>";
-}
+    echo "<h1>Contatti</h1>";
+
+    include("views/footer.php");

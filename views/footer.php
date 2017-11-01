@@ -20,29 +20,30 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="container">
+            <form method="post" action="action.php?action=loginSignup">
+                <div class="modal-body">
+                    <div class="container">
                         <input type="hidden" id="loginActive" name="loginActive" value="1">
                         <div class="form-group row">
                             <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Email</label>
                             <div class="col-sm-12">
-                                <input type="email" class="form-control form-control-lg" id="email" placeholder="tuaemail@esempio.com">
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="tuaemail@esempio.com">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Password</label>
                             <div class="col-sm-12">
-                                <input type="password" class="form-control form-control-lg" id="password" placeholder="password">
+                                <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="password">
                             </div>
-                            <div></div>
                         </div>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <a id="toggleLogin">Registrati</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                <button type="button" class="btn btn-primary" id="botRegSig">Login</button>
-            </div>
+                <div class="modal-footer">
+                    <a id="toggleLogin">Registrati</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                    <button type="submit" class="btn btn-primary" id="botRegSig">Login</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -69,7 +70,7 @@
 
     });
 
-    $("#botRegSig").click(function () {
+    /*$("#botRegSig").click(function () {
         $.ajax({
             type: "POST",
             url: "action.php?action=loginSignup",
@@ -78,7 +79,7 @@
                 alert(result);
             }
         })
-    })
+    })*/
 
 </script>
 

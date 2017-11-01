@@ -81,10 +81,6 @@
 
         };
 
-    }else{
-
-        echo $_SESSION['id'];
-
     }
 
 ?>
