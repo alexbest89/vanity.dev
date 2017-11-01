@@ -65,7 +65,8 @@
 
                     $error = "Login Effettuato!";
                     $_SESSION['id'] = $row['id'];
-                    header("Location:index.php");
+                    $_SESSION['email'] = $row['email'];
+                    header("Location:pagina_utente.php");
 
                 } else {
                     $error = "Email e password sono errati";

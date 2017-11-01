@@ -11,4 +11,15 @@
 
     }
 
+    function profilo($nome,$link) {
+
+        global $query1;
+        $query1 = "select * from utente where id =".$_SESSION['id'];
+        $result = mysqli_query($link, $query1);
+        $row = mysqli_fetch_assoc($result);
+        echo $row[$nome];
+
+    }
+
+
 ?>
