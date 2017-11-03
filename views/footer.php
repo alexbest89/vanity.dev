@@ -69,17 +69,16 @@
         }
 
     });
-
-    /*$("#botRegSig").click(function () {
+    $("#mod_ute").click(function () {
         $.ajax({
             type: "POST",
-            url: "action.php?action=loginSignup",
-            data: "email=" + $("#email").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
-                success: function (result) {
+            url: "action.php",
+            data: "nome-text=" + $("#nome-text").val() + "&cognome-text=" + $("#cognome-text").val() + "&tel-text=" + $("#tel-text").val() + "&email-text=" + $("#email-text").val() + "&pos-text=" + $("#pos-text").val(),
+            success: function (result) {
                 alert(result);
             }
         })
-    })*/
+    })
 
 </script>
 

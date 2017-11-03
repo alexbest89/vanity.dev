@@ -84,4 +84,44 @@
 
     }
 
+    if ($_POST['email-text']){
+
+        if (!$_POST['nome-text']){
+
+            $error = "Manca il nome utente";
+
+        } elseif (!$_POST['cognome-text']){
+
+            $error = "Manca il Cognome";
+
+        } elseif (!$_POST['tel-text']){
+
+            $error = "Manca il telefono";
+
+        } elseif (!$_POST['pos-text']){
+
+            $error = "Manca il ruolo";
+
+        }
+
+        if ($error != "") {
+            echo $error;
+            echo $ok;
+            exit();
+        }
+
+        $query = "update utente set nome = '".mysqli_real_escape_string($link,$_POST['nome-text'])."', cognome = '".mysqli_real_escape_string($link,$_POST['cognome-text'])."', telefono = '".mysqli_real_escape_string($link,$_POST['tel-text'])."', posizione = '".$_POST['pos-text']."' where id = ".$_SESSION['id']." ";
+        if(mysqli_real_query($link, $query)) {
+
+            echo "Utente modificato";
+
+        } else{
+
+            echo "utente non modificato";
+
+        }
+        header("Location:pagina_utente.php");
+
+    }
+
 ?>
