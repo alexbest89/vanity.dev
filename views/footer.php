@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a id="toggleLogin">Registrati</a>
+                    <a href="pagina_utente.php" id="toggleLogin">Registrati</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                     <button type="submit" class="btn btn-primary" id="botRegSig">Login</button>
                 </div>
@@ -50,9 +50,9 @@
 
 <script>
 
-    $("#toggleLogin").click(function () {
+    /*$("#toggleLogin").click(function () {
 
-        if ($("#loginActive").val() == "1"){
+         if ($("#loginActive").val() == "1"){
 
             $("#loginActive").val("0");
             $("#loginModalTitle").html("Registrati");
@@ -68,17 +68,9 @@
 
         }
 
-    });
-    $("#mod_ute").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "action.php",
-            data: "nome-text=" + $("#nome-text").val() + "&cognome-text=" + $("#cognome-text").val() + "&tel-text=" + $("#tel-text").val() + "&email-text=" + $("#email-text").val() + "&pos-text=" + $("#pos-text").val(),
-            success: function (result) {
-                alert(result);
-            }
-        })
-    })
+
+
+    });*/
 
 </script>
 

@@ -6,3 +6,12 @@ Da fare:
 
 Nuova pagina solo per  ruolo "proprietà" dove si potranno inserire e modificare i profili dei dipendenti
 Cancellare da profilo utente la scelta posizione
+
+
+4/11 ore 17:00
+PROBLEMI DA RISOLVERE:
+
+Tasto registrati collegato alla pagina "pagina_utente.php" tutta via in questa pagina non funziona la fase di registrazione.
+
+Da sistemare anche il link per l'inserimento del personale visibile solo se loggato c'è il titolare, funziona una volta poi è sempre visibile
+anche se non si è loggati.
