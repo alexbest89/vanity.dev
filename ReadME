@@ -4,5 +4,4 @@ Sistemato pagina profilo_utente, ora pigiando il tasto a destra modifica nel DB 
 
 Da fare:
 
-Nuova pagina solo per  ruolo "proprietà" dove ci sarà l'elenco di tutti i profili presenti nel DB con la possibilità di ricerca
-per nome e dove, una volta trovato il dipendete si potrà modificare il ruolo.
+Nuova pagina solo per  ruolo "proprietà" dove si potranno inserire e modificare i profili dei dipendenti
