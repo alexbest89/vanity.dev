@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="container">
-        <form method="post"">
+        <form method="post" action="action.php">
             <div class="row profilo">
                 <div class="col-10">
 
@@ -20,28 +20,20 @@
                         <input type="text" class="form-control col-sm-3" id="tel-text" name="tel-text" value="<?php profilo('telefono',$link); ?>">
                     </div>
 
-
                     <div class="form-group row">
                         <label for="email-text" class="col-2 col-form-label">Email: </label>
-                        <input type="text" class="form-control col-sm-3" id="email-text" name="email-text" value="<?php profilo('email',$link); ?>" disabled>
+                        <input type="text" class="form-control col-sm-3" id="email-text" name="email-text" value="<?php profilo('email',$link); ?>">
                     </div>
 
                     <div class="form-group row">
-
-                        <label class="col-2 col-form-label" for="pos-text">Ruolo</label>
-                        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="pos-text" nome="pos-text">
-                            <option selected><?php profilo('posizione',$link); ?></option>
-                            <option value="Proprietà">Proprietà</option>
-                            <option value="Parrucchiera">Parrucchiera</option>
-                            <option value="Add. Shampoo">Add. Shampoo</option>
-                            <option value="Add. Pulizie">Add. Pulizie</option>
-                        </select>
+                        <label for="pass-text" class="col-2 col-form-label">Password: </label>
+                        <input type="password" class="form-control col-sm-3" id="pass-text" name="pass-text" value="<?php profilo('email',$link); ?>">
                     </div>
 
                 </div>
 
                 <div class="col-2">
-                    <button type="submit" class="btn btn-primary" id="mod_ute">Modifica</button>
+                    <button type="submit" class="btn btn-primary" id="mod_ute">Registrati</button>
 
                 </div>
             </div>

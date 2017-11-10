@@ -34,9 +34,9 @@
                 exit();
             }
 
-            if ($_POST['loginActive'] == 0) {
+            if ($_POST['loginActive'] !== 0) {
 
-                $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email']) . "'";
+                /*$query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email']) . "'";
                 $result = mysqli_query($link, $query);
                 if (mysqli_num_rows($result) > 0) {
                     $error = "l'email è già stata usata";
@@ -53,9 +53,7 @@
 
                         $error = "L'utente non è stato registrato.";
                     }
-                }
-
-            } else {
+                }*/
 
                 $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email']) . "'";
                 $result = mysqli_query($link, $query);
@@ -84,44 +82,65 @@
 
     }
 
-    if ($_POST['email-text']){
+    $_POST = array();
 
-        if (!$_POST['nome-text']){
+
+    if ($_POST['email-text']) {
+
+        if (!$_POST['nome-text']) {
 
             $error = "Manca il nome utente";
 
-        } elseif (!$_POST['cognome-text']){
+        } elseif (!$_POST['cognome-text']) {
 
             $error = "Manca il Cognome";
 
-        } elseif (!$_POST['tel-text']){
+        } elseif (!$_POST['tel-text']) {
 
             $error = "Manca il telefono";
 
-        } elseif (!$_POST['pos-text']){
+        } elseif (!$_POST['pos-text']) {
 
             $error = "Manca il ruolo";
 
         }
+    } else {
 
-        if ($error != "") {
-            echo $error;
-            echo $ok;
-            exit();
+        $error = "Manca email";
+        exit();
+
+    }
+
+    if ($error != "") {
+        echo $error;
+        echo $ok;
+        exit();
+    } else {
+
+        echo "email ".$_POST['email-text'];
+        $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email-text']) . "'";
+        $result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) > 0) {
+            $error = "l'email è già stata usata";
+        } else {
+            $query = "insert into utente(email,password) values ('" . mysqli_real_escape_string($link, $_POST['email-text']) . "','" . mysqli_real_escape_string($link, $_POST['pass-text']) . "')";
+            if (mysqli_real_query($link, $query)) {
+                $query1 = "UPDATE utente SET password ='" . md5(md5(mysqli_insert_id($link)) . $_POST['pass-text']) . "' WHERE id = " . mysqli_insert_id($link) . " ";
+                mysqli_real_query($link, $query1);
+
+                $error = "Utente registrato!";
+             } else {
+
+                $error = "L'utente non è stato registrato.";
+            }
         }
 
-        $query = "update utente set nome = '".mysqli_real_escape_string($link,$_POST['nome-text'])."', cognome = '".mysqli_real_escape_string($link,$_POST['cognome-text'])."', telefono = '".mysqli_real_escape_string($link,$_POST['tel-text'])."', posizione = '".$_POST['pos-text']."' where id = ".$_SESSION['id']." ";
-        if(mysqli_real_query($link, $query)) {
+    }
 
-            echo "Utente modificato";
-
-        } else{
-
-            echo "utente non modificato";
-
-        }
-        header("Location:pagina_utente.php");
-
+    if ($error != "") {
+        echo $error;
+        echo $ok;
+        exit();
     }
 
 ?>
