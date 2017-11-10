@@ -27,17 +27,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="?page=contatti">Contatti</a>
                 </li>
-                <li class="nav-item">
-                <?php if($_SESSION['ruolo'] == 'titolare'){
-
-                    echo '<a class="nav-link" href="dipendeti.php">Gestione dipendenti</a>';
-
-                } else {
-
-                    echo '<a class="nav-link" href="">Prova</a>';
-
-                } ?>
-                </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
                     <?php if (!$_SESSION['id']) {

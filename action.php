@@ -34,7 +34,28 @@
                 exit();
             }
 
-            if ($_POST['loginActive'] == 1) {
+            if ($_POST['loginActive'] == 0) {
+
+                $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email']) . "'";
+                $result = mysqli_query($link, $query);
+                if (mysqli_num_rows($result) > 0) {
+                    $error = "l'email è già stata usata";
+                } else {
+                    $query = "insert into utente(email,password) values ('" . mysqli_real_escape_string($link, $_POST['email']) . "','" . mysqli_real_escape_string($link, $_POST['password']) . "')";
+                    if (mysqli_real_query($link, $query)) {
+
+                        $query1 = "UPDATE utente SET password ='" . md5(md5(mysqli_insert_id($link)) . $_POST['password']) . "' WHERE id = " . mysqli_insert_id($link) . "";
+                        mysqli_real_query($link, $query1);
+
+                        $error = "Utente registrato!";
+
+                    } else {
+
+                        $error = "L'utente non è stato registrato.";
+                    }
+                }
+
+            } else {
 
                 $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email']) . "'";
                 $result = mysqli_query($link, $query);
@@ -45,7 +66,6 @@
                     $error = "Login Effettuato!";
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['email'] = $row['email'];
-                    $_SESSION['ruolo'] = $row['posizione'];
                     header("Location:index.php");
 
                 } else {
@@ -74,9 +94,13 @@
 
             $error = "Manca il Cognome";
 
-        } elseif (!$_POST['tel-text']) {
+        } elseif (!$_POST['tel-text']){
 
             $error = "Manca il telefono";
+
+        } elseif (!$_POST['pos-text']){
+
+            $error = "Manca il ruolo";
 
         }
 
@@ -86,29 +110,7 @@
             exit();
         }
 
-        $query = "select * from utente where email='" . mysqli_real_escape_string($link, $_POST['email-text']) . "'";
-        $result = mysqli_query($link, $query);
-        if (mysqli_num_rows($result) > 0) {
-            $error = "l'email è già stata usata";
-        } else {
-            $query = "insert into utente(nome,cognome,telefono,email,password) values ('" . mysqli_real_escape_string($link, $_POST['nome-text']) . "','" . mysqli_real_escape_string($link, $_POST['cognome-text']) . "','" . mysqli_real_escape_string($link, $_POST['tel-text']) . "','" . mysqli_real_escape_string($link, $_POST['email-text']) . "','" . mysqli_real_escape_string($link, $_POST['password-text']) . "')";
-            if (mysqli_real_query($link, $query)) {
-
-                $query1 = "UPDATE utente SET password ='" . md5(md5(mysqli_insert_id($link)) . $_POST['password']) . "' WHERE id = " . mysqli_insert_id($link) . "";
-                mysqli_real_query($link, $query1);
-
-                $error = "Utente registrato!";
-                header("Location:index.php");
-
-            } else {
-
-                $error = "L'utente non è stato registrato.";
-            }
-        }
-
-    } else {
-
-        /*$query = "update utente set nome = '".mysqli_real_escape_string($link,$_POST['nome-text'])."', cognome = '".mysqli_real_escape_string($link,$_POST['cognome-text'])."', telefono = '".mysqli_real_escape_string($link,$_POST['tel-text'])."', posizione = '".$_POST['pos-text']."' where id = ".$_SESSION['id']." ";
+        $query = "update utente set nome = '".mysqli_real_escape_string($link,$_POST['nome-text'])."', cognome = '".mysqli_real_escape_string($link,$_POST['cognome-text'])."', telefono = '".mysqli_real_escape_string($link,$_POST['tel-text'])."', posizione = '".$_POST['pos-text']."' where id = ".$_SESSION['id']." ";
         if(mysqli_real_query($link, $query)) {
 
             echo "Utente modificato";
@@ -117,7 +119,8 @@
 
             echo "utente non modificato";
 
-        }*/
+        }
+        header("Location:pagina_utente.php");
 
     }
 
