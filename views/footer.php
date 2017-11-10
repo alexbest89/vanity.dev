@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a id="toggleLogin">Registrati</a>
+                    <a href="pagina_utente.php" id="toggleLogin">Registrati</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                     <button type="submit" class="btn btn-primary" id="botRegSig">Login</button>
                 </div>
