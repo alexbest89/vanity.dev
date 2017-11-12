@@ -4,6 +4,7 @@
 
     if ($_GET['logout'] == 1){
         $_SESSION['id'] = "";
+        $_SESSION['email'] = "";
         header("Location:index.php");
     }
 
@@ -19,13 +20,16 @@
 
                 $error = "Il campo email è richiesto";
 
+
             } else if (!$_POST['password']) {
 
                 $error = "il campo password è richiesto";
 
+
             } else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
 
                 $error = "Inserisci un indirizzo email valido!";
+
 
             }
 
@@ -78,13 +82,11 @@
                 exit();
             }
 
-        };
+        }
 
     }
 
-    $_POST = array();
-
-
+/*
     if ($_POST['email-text']) {
 
         if (!$_POST['nome-text']) {
@@ -129,9 +131,12 @@
                 mysqli_real_query($link, $query1);
 
                 $error = "Utente registrato!";
+                header("Location:index.php");
+
              } else {
 
                 $error = "L'utente non è stato registrato.";
+                header("Location:index.php");
             }
         }
 

@@ -1,7 +1,7 @@
-
 <div class="container">
     <div class="container">
-        <form method="post" action="action.php">
+        <form method="post" action="prova.php">
+            <p><?php echo $error; ?></p>
             <div class="row profilo">
                 <div class="col-10">
 
