@@ -48,41 +48,5 @@
     </div>
 </div>
 
-<script>
-
-    /*$("#toggleLogin").click(function () {
-
-        if ($("#loginActive").val() == "1"){
-
-            $("#loginActive").val("0");
-            $("#loginModalTitle").html("Registrati");
-            $("#botRegSig").html("Registrati");
-            $("#toggleLogin").html("Login");
-
-        } else{
-
-            $("#loginActive").val("1");
-            $("#loginModalTitle").html("Login");
-            $("#botRegSig").html("Login");
-            $("#toggleLogin").html("Registrati");
-
-        }
-
-    });
-    $("#mod_ute").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "action.php",
-            data: "nome-text=" + $("#nome-text").val() + "&cognome-text=" + $("#cognome-text").val() + "&tel-text=" + $("#tel-text").val() + "&email-text=" + $("#email-text").val() + "&pos-text=" + $("#pos-text").val(),
-            success: function (result) {
-                alert(result);
-            }
-        })
-    })
-    */
-
-</script>
-
-
 </body>
 </html>
