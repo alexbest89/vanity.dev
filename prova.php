@@ -51,7 +51,7 @@
                 $_SESSION['err'] = "Utente registrato!";
 				$_SESSION['id'] = $row['id'];
                 $_SESSION['email'] = $row['email'];
-				header("location:index.php");
+				header("location:pagina_agenda.php");
 				
             } else {
 

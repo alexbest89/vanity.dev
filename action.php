@@ -52,7 +52,7 @@
                     $_SESSION['err'] = "Login Effettuato!";
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['email'] = $row['email'];
-                    header("Location:index.php");
+                    header("Location:pagina_agenda.php");
 
                 } else {
                     $_SESSION['err'] = "Email e password sono errati";
