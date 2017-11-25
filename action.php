@@ -2,18 +2,20 @@
 
     include "functions.php";
 
+    $_SESSION['err'] = "";
+
     if ($_GET['logout'] == 1){
         $_SESSION['id'] = "";
         $_SESSION['email'] = "";
         header("Location:index.php");
     }
 
+
     if (!$_SESSION['id']) {
 
 
         if ($_GET['action'] == "loginSignup") {
 
-            $_SESSION['err'] = "";
 
             if (!$_POST['email']) {
 
@@ -35,10 +37,9 @@
 
             }
 
-            /*if ($error != "") {
-                $_POST['err'] = $error;
+            if ($_SESSION['err'] != "") {
                 exit();
-            }*/
+            }
 
             if ($_POST['loginActive'] !== 0) {
 
@@ -60,10 +61,9 @@
 
             }
 
-            /*if ($error != "") {
-                $_POST['err'] = $error;
+            if ($error != "") {
                 exit();
-            }*/
+            }
 
         }
 
