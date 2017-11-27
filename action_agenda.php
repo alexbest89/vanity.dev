@@ -12,7 +12,7 @@ header('Content-Type: application/json');
 $start = mysqli_real_escape_string($link,$_GET["start"]);
 $end = mysqli_real_escape_string($link,$_GET["end"]);
 
-$result = mysqli_query($link,"SELECT * FROM appuntamento");
+$result = mysqli_query($link,"SELECT * FROM appuntamento where id_cliente = '".$_SESSION['id']."'");
 $i = 0;
 while($row = mysqli_fetch_assoc($result))
 {
@@ -24,11 +24,13 @@ exit;
 elseif($_POST['action'] == "add")
 {
 mysqli_query($link,"INSERT INTO `appuntamento` (
+`id_cliente`,
 `start` ,
 `end` ,
 `title`
 )
 VALUES (
+'".mysqli_real_escape_string($link,$_SESSION["id"])."',
 '".mysqli_real_escape_string($link,date('Y-m-d H:i:s',strtotime($_POST["start"])))."',
 '".mysqli_real_escape_string($link,date('Y-m-d H:i:s',strtotime($_POST["end"])))."',
 '".mysqli_real_escape_string($link,$_POST["title"])."'

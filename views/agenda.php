@@ -20,11 +20,18 @@
                 <div class="control-group">
                     <label class="control-label" for="inputPatient">Trattamento:</label>
                     <div class="field desc">
-                        <input class="form-control" id="title" name="title" placeholder="Trattamento" type="text" value="">
+                        <!--<input class="form-control" id="title" name="title" placeholder="Trattamento" type="text" value="">-->
+                        <input type="text" autocomplete="off" id="title" name="title" placeholder="Trattamento" list="trattamenti" value="">
+
+                        <datalist id="trattamenti">
+                            <option>Taglio</option>
+                            <option>Colore</option>
+                            <option>Piega</option>
+                        </datalist>
                     </div>
                     <label class="control-label" for="inputPatient">Note:</label>
                     <div class="field desc">
-                        <input class="form-control" id="note" name="title" placeholder="note" type="text" value="">
+                        <input class="form-control" id="note" name="note" placeholder="note" type="text" value="">
                     </div>
                 </div>
 
@@ -34,7 +41,7 @@
 
 
                 <div class="control-group">
-                    <label class="control-label" for="when">When:</label>
+                    <label class="control-label" for="when">Quando:</label>
                     <div class="controls controls-row" id="when" style="margin-top:5px;">
                     </div>
                 </div>

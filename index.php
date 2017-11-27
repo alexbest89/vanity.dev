@@ -4,7 +4,11 @@
 
     include("views/header.php");
 
-    include("views/home.php");
+    if (!$_SESSION['id']) {
+        include("views/home.php");
+    } else{
+        include("views/agenda.php");
+    }
 
     include("views/footer.php");
 

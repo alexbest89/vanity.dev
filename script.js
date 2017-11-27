@@ -7,9 +7,12 @@ $(document).ready(function(){
             right: 'agendaWeek,agendaDay'
         },
         defaultView: 'agendaWeek',
+        minTime: '08:00:00',
+        maxTime: '22:00:00',
         editable: true,
         selectable: true,
         allDaySlot: false,
+
 
         events: "action_agenda.php?view=1",
 
