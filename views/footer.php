@@ -52,6 +52,10 @@
 
 <script>
 
+    $( "#scelta" ).change(function() {
+        $("#title").val(( $("#scelta").val()));
+    });
+
 </script>
 
 </body>

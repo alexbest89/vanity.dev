@@ -20,14 +20,27 @@
                 <div class="control-group">
                     <label class="control-label" for="inputPatient">Trattamento:</label>
                     <div class="field desc">
-                        <!--<input class="form-control" id="title" name="title" placeholder="Trattamento" type="text" value="">-->
-                        <input type="text" autocomplete="off" id="title" name="title" placeholder="Trattamento" list="trattamenti" value="">
+                        <div class="form-group">
+                            <label for="title">Scegli il trattamento:</label>
+                            <input class="form-control" id="title" name="title" type="hidden">
+                            <select id="scelta" class="form-control">
+                                <?php
 
-                        <datalist id="trattamenti">
-                            <option>Taglio</option>
-                            <option>Colore</option>
-                            <option>Piega</option>
-                        </datalist>
+                                    $result = mysqli_real_query($link,"SELECT nome FROM trattamenti");
+                                    $i = 0;
+                                    if($result = mysqli_use_result($link)) {
+                                        while ($row = mysqli_fetch_row($result)){
+                                            for ($i=0;$i<sizeof($row);$i++){
+                                                echo "<option>";
+                                                printf($row[$i]);
+                                                echo "</option>";
+                                            }
+                                        }
+                                    }
+
+                                ?>
+                            </select>
+                        </div>
                     </div>
                     <label class="control-label" for="inputPatient">Note:</label>
                     <div class="field desc">
@@ -66,6 +79,7 @@
             </div>
             <div id="modalBody" class="modal-body">
                 <h4 id="modalTitle" class="modal-title"></h4>
+                <h2 id="modalNote" class="modal-title"></h2>
                 <div id="modalWhen" style="margin-top:5px;"></div>
             </div>
             <input type="hidden" id="eventID"/>
